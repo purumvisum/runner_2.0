@@ -3,68 +3,50 @@
 </template>
 
 <script>
-  const electron = require('electron');
-  const path = require('path');
-  const fs = require('fs');
+
+    import * as types from '../store/types';
+    const electron = require('electron');
+    const path = require('path');
+    const fs = require('fs');
 
   export default {
 
-    props: ['load', 'choosenDocs'],
-    data: () => ({
-      filePath: 'runnerFiles.json',
-      dataInFile: '',
-    }),
-    methods: {
-      handleClick() {
-        this.load();
-        this.writeFilesIntheSystem();
-        console.log('test');
-      },
-      writeFilesIntheSystem() {
-        // const userDataPath = (electron.app || electron.remote.app).getPath('userData');
-        // We'll use the `configName` property to set the file name and path.join to bring it all together as a string
-        // this.filePath = path.join('electron', 'runnerFiles.json');
-        // console.log('path', pathToFile);
+      props: ['groupName'],
+      data: () => ({
+          // filePath: 'runnerFiles.json',
+          // dataInFile: '',
+      }),
+      methods: {
+          handleClick() {
+              this.load();
+          },
+          async load() {
+              const {dialog} = require('electron').remote;
+              const choosenFile = await dialog.showOpenDialog({properties: ['openFile', 'openDirectory', 'multiSelections']});
 
-        // wrong file reading
-        this.dataInFile = this.parseDataFile(this.filePath);
+              const files = Array.isArray(choosenFile) ? [...choosenFile.filePaths] : [choosenFile.filePaths];
 
-        console.log('this.dataInFile', this.dataInFile);
+              Array.isArray(choosenFile)
+              console.log("this.documentsToOpen", choosenFile, this.groupName);
+              this.$store.dispatch(types.ADD_FILE_GROUP, {
+                  [this.groupName]: {files: files}
+              })
 
-        const dataToSave = {
-          ...JSON.parse(this.dataInFile),
-          ...this.choosenDocs,
-        };
+              console.log(this.$store);
 
-        console.log('dataToSave', dataToSave);
-        // this.filePath = 'runnerFiles.json';
-        // this.writeFileSyncRecursive(this.filePath, 'test', 'utf-8');
-        // let content = 'test2';
+              // this.documentsToOpen.test = [
+              //     ...this.documentsToOpen.test,
+              //     ...choosenFile.filePaths,
+              // ];
 
+              // this.documentsToOpen.test = this.documentsToOpen.test.filter(onlyUnique);
 
-        const myJSON = `'${JSON.stringify(dataToSave)}'`;
-        // console.log('myJSON',myJSON)
-        // console.log('choosenDocs',this.choosenDocs, myJSON);
-        this.writefile(this.filePath, myJSON);
-
-
-        console.log('this.filePath', this.filePath, this.dataInFile);
-      },
-      parseDataFile(filePath) {
-        try {
-          return JSON.parse(fs.readFileSync(filePath));
-        } catch (error) {
-          return null;
-        }
-      },
-      writefile(filePath, content) {
-        try {
-          fs.writeFileSync(filePath, content, 'utf-8');
-        } catch (e) {
-          alert('Failed to save the file !');
-        }
-      },
-    },
-
-  };
+              // console.log("this.documentsToOpen", this.documentsToOpen);
+          },
+          open() {
+              const {shell} = require('electron');
+              shell.openItem(this.documentsToOpen.test[0]);
+          }
+      }
+  }
 </script>

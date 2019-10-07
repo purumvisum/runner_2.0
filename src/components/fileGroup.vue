@@ -25,8 +25,8 @@
                     </v-sheet>
                 </v-col>
                 <choose-file-button
-                        :choosenDocs = "documentsToOpen"
-                        :load="load"
+<!--                        :choosenDocs = "documentsToOpen"-->
+<!--                        :load="load"-->
                 ></choose-file-button>
             </v-row>
             </v-container>
@@ -51,26 +51,26 @@
             },
         }),
         props: ['title', 'key', 'item'],
-        methods: {
-            async load() {
-                const { dialog } = require('electron').remote;
-                const choosenFile = await dialog.showOpenDialog({ properties: ['openFile', 'openDirectory', 'multiSelections'] });
-                console.log("this.documentsToOpen", choosenFile);
-
-                this.documentsToOpen.test = [
-                    ...this.documentsToOpen.test,
-                    ...choosenFile.filePaths,
-                ];
-
-                this.documentsToOpen.test = this.documentsToOpen.test.filter(onlyUnique);
-
-                console.log("this.documentsToOpen", this.documentsToOpen);
-            },
-            open() {
-                const { shell } = require('electron');
-                shell.openItem(this.documentsToOpen.test[0]);
-            },
-        }
+        // methods: {
+        //     async load() {
+        //         const { dialog } = require('electron').remote;
+        //         const choosenFile = await dialog.showOpenDialog({ properties: ['openFile', 'openDirectory', 'multiSelections'] });
+        //         console.log("this.documentsToOpen", choosenFile);
+        //
+        //         this.documentsToOpen.test = [
+        //             ...this.documentsToOpen.test,
+        //             ...choosenFile.filePaths,
+        //         ];
+        //
+        //         this.documentsToOpen.test = this.documentsToOpen.test.filter(onlyUnique);
+        //
+        //         console.log("this.documentsToOpen", this.documentsToOpen);
+        //     },
+        //     open() {
+        //         const { shell } = require('electron');
+        //         shell.openItem(this.documentsToOpen.test[0]);
+        //     },
+        // }
         // data: () => ({
         //     elevations: [6, 12, 18]
         // })
