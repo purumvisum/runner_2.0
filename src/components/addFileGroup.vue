@@ -16,17 +16,18 @@
                             <v-col cols="12" sm="6" md="4">
                                 <v-text-field label="Group Name*" required v-model="groupName"></v-text-field>
                             </v-col>
-                            <v-col>{{groupName}}</v-col>
+
                         </v-row>
                     </v-container>
-                    <small>*indicates required field</small>
-                </v-card-text>
+
                 <choose-file-button
-                    :groupName = "groupName">
-<!--                        :choosenDocs = "documentsToOpen"-->
-<!--                        :load="load"-->
-                ></choose-file-button>
-                <files-list :groupName = "groupName"></files-list>
+                        :addFiles = "addFiles"
+                        :groupName = "groupName">
+                </choose-file-button>
+                <files-list
+                        :files = "files"
+                        :groupName = "groupName"></files-list>
+                </v-card-text>
                 <v-card-actions>
                     <div class="flex-grow-1"></div>
                     <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
@@ -38,37 +39,22 @@
 </template>
 
 <script>
-    // import * as types from '../store/types';
     import FilesList from "./filesList";
     import ChooseFileButton from "./chooseFileButton";
     export default {
         components: {ChooseFileButton, FilesList},
         data: () => ({
             dialog: false,
-            groupName: ''
+            groupName: '',
+            files: []
         }),
         methods: {
-            addFileGroup()  {
-                console.log(this.$store);
-                // this.$store.dispatch(types.ADD_FILE_GROUP, {'test' : 'test'})
-                // types.ADD_FILE_GROUP({'test' : 'test'});
-                console.log(this.$store);
+            addFiles(files) {
+                this.files = [
+                    ...this.files,
+                    ...files
+                ];
             }
         }
     }
 </script>
-
-<!--@click="addFileGroup"-->
-<!--<script>-->
-<!--    // import {mapActions} from 'vuex';-->
-<!--    // import * as types from '../store/types';-->
-<!--    //-->
-<!--    // export default {-->
-<!--    //     methods: {-->
-<!--    //         ...mapActions({-->
-<!--    //             asyncIncrement: types.COUNTER_INCREMENT_ASYNC,-->
-<!--    //             asyncDecrement: types.COUNTER_DECREMENT_ASYNC-->
-<!--    //         })-->
-<!--    //     }-->
-<!--    // }-->
-<!--</script>-->

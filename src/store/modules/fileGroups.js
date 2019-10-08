@@ -1,7 +1,7 @@
 import * as types from '../types';
 
 const state = {
-    fileGroups: {
+    groups: {
         'english' : {
             files: [
                 {
@@ -35,9 +35,9 @@ const state = {
 };
 
 const getters = {
-    [types.FILE_GROUPS]: state => {
-        return state.fileGroups;
-    },
+    // [types.FILE_GROUPS]: state => {
+    //     return state.fileGroups;
+    // },
     // [types.GROUP_FILES]: state => {
     //     return state.fileGroups;
     // },
@@ -48,11 +48,12 @@ const getters = {
 
 const mutations = {
     [types.MUTATE_FILE_GROUPS]: (state, payload) => {
-        console.log("state",state, payload)
-        state.fileGroups = {
-            ...state.fileGroups,
+        // console.log("MUTATE_FILE_GROUPS",state, payload, state.fileGroups);
+        state.groups = {
+            ...state.groups,
             ...payload
         };
+        console.log('state.fileGroups', state.fileGroups)
     },
     // [types.MUTATE_DECREMENT_COUNTER]: (state, payload) => {
     //     state.counter -= payload;
@@ -61,6 +62,7 @@ const mutations = {
 
 const actions = {
     [types.ADD_FILE_GROUP]: ({ commit }, payload) => {
+        console.log('payload', payload);
         commit(types.MUTATE_FILE_GROUPS, payload);
     },
     // [types.COUNTER_DECREMENT]: ({ commit }, payload) => {

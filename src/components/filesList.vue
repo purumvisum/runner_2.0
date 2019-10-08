@@ -5,13 +5,16 @@
                 <thead>
                 <tr>
                     <th class="text-left">Name</th>
-                    <th class="text-left">Calories</th>
+                    <th class="text-left">Path</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="item in fileGroups" :key="index">
-                    <td>{{item}}</td>
-<!--                    <td>{{ item.calories }}</td>-->
+                <tr v-for="(item, index) in files">
+                    <td>{{item.name}}</td>
+                    <td>{{ item.filePaths }}</td>
+                    <td>
+                        <v-icon @click="removeFile(index)" medium right color="gray">mdi-trash-can</v-icon>
+                    </td>
                 </tr>
                 </tbody>
             </template>
@@ -20,20 +23,12 @@
 </template>
 
 <script>
-
-    import * as types from '../store/types';
-    // const electron = require('electron');
-    // const path = require('path');
-    // const fs = require('fs');
-
     export default {
-        props: ['groupName'],
-        computed: {
-            fileGroups () {
-                console.log('this.$store', this.$store.state)
-                return this.$store.state.fileGroups[this.groupName]
+        props: ['groupName', 'files'],
+        methods: {
+            removeFile (index)  {
+                this.files.splice(index, 1);
             }
         }
-
     }
 </script>
