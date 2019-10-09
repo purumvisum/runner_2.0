@@ -31,7 +31,7 @@
                 <v-card-actions>
                     <div class="flex-grow-1"></div>
                     <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-                    <v-btn color="blue darken-1" text @click="dialog = false">Save</v-btn>
+                    <v-btn color="blue darken-1" text @click="saveFilesToTheStore">Save</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -39,6 +39,7 @@
 </template>
 
 <script>
+    import * as types from '../store/types';
     import FilesList from "./filesList";
     import ChooseFileButton from "./chooseFileButton";
     export default {
@@ -54,6 +55,20 @@
                     ...this.files,
                     ...files
                 ];
+            },
+            saveFilesToTheStore() {
+                this.dialog = false;
+                const groupToSave = {
+                    [this.groupName]: {
+                        files: this.files
+                    }
+                };
+
+                this.$store.dispatch(types.ADD_FILE_GROUP, groupToSave);
+                this.groupName = '';
+                this.files=[];
+                // console.log("fgsdfgsfgsdfg",this.$store.state.fileGroups.groups[...])
+                // cons
             }
         }
     }

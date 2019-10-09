@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="files.length">
         <v-simple-table>
             <template v-slot:default>
                 <thead>

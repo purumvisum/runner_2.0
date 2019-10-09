@@ -2,35 +2,35 @@ import * as types from '../types';
 
 const state = {
     groups: {
-        'english' : {
-            files: [
-                {
-                    title: "test1",
-                    checked: true
-                }, {
-                    title:"test2",
-                    checked: false
-                },
-                {
-                    title:"test3",
-                    checked: false
-                }
-            ]
-        },'dutch' : {
-            files: [
-                {
-                    title: "test1",
-                    checked: false
-                }, {
-                    title:"test2",
-                    checked: true
-                },
-                {
-                    title:"test2",
-                    checked: false
-                }
-            ]
-        }
+        // 'english' : {
+        //     files: [
+        //         {
+        //             title: "test1",
+        //             checked: true
+        //         }, {
+        //             title:"test2",
+        //             checked: false
+        //         },
+        //         {
+        //             title:"test3",
+        //             checked: false
+        //         }
+        //     ]
+        // },'dutch' : {
+        //     files: [
+        //         {
+        //             title: "test1",
+        //             checked: false
+        //         }, {
+        //             title:"test2",
+        //             checked: true
+        //         },
+        //         {
+        //             title:"test2",
+        //             checked: false
+        //         }
+        //     ]
+        // }
     }
 };
 
@@ -55,6 +55,16 @@ const mutations = {
         };
         console.log('state.fileGroups', state.fileGroups)
     },
+    [types.MUTATE_FILE_CHECKED]: (state, payload) => {
+        // console.log("MUTATE_FILE_GROUPS",state, payload, state.fileGroups);
+        const file = state.groups[payload.title].files.find((file) => file.id === payload.id)
+        file.checked = !file.checked;
+        // state.groups = {
+        //     ...state.groups,
+        //     ...payload
+        // };
+        // console.log('state.fileGroups', state.fileGroups)
+    },
     // [types.MUTATE_DECREMENT_COUNTER]: (state, payload) => {
     //     state.counter -= payload;
     // }
@@ -64,6 +74,10 @@ const actions = {
     [types.ADD_FILE_GROUP]: ({ commit }, payload) => {
         console.log('payload', payload);
         commit(types.MUTATE_FILE_GROUPS, payload);
+    },
+    [types.TOGGLE_FILE_CHECKED]: ({ commit }, payload) => {
+        console.log('payload id', payload);
+        commit(types.MUTATE_FILE_CHECKED, payload);
     },
     // [types.COUNTER_DECREMENT]: ({ commit }, payload) => {
     //     commit(types.MUTATE_DECREMENT_COUNTER, payload);

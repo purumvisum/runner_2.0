@@ -6,6 +6,7 @@ export const GROUP_FILES = 'fileGroups/GROUP_FILES';
 
 // Mutations
 export const MUTATE_FILE_GROUPS = 'fileGroups/MUTATE_FILE_GROUPS';
+export const MUTATE_FILE_CHECKED = 'fileGroups/MUTATE_FILE_CHECKED';
 // export const MUTATE_FILE_GROUP = 'fileGroups/MUTATE_FILE_GROUP';
 
 // export const MUTATE_INCREMENT_COUNTER = 'counter/MUTATE_INCREMENT_COUNTER';
@@ -14,6 +15,7 @@ export const MUTATE_FILE_GROUPS = 'fileGroups/MUTATE_FILE_GROUPS';
 
 // Actions
 export const ADD_FILE_GROUP = 'fileGroups/ADD_FILE_GROUP';
+export const TOGGLE_FILE_CHECKED = 'fileGroups/TOGGLE_FILE_CHECKED';
 // export const COUNTER_INCREMENT_ASYNC = 'counter/COUNTER_INCREMENT_ASYNC';
 // export const COUNTER_DECREMENT = 'counter/COUNTER_DECREMENT';
 // export const COUNTER_DECREMENT_ASYNC = 'counter/COUNTER_DECREMENT_ASYNC';

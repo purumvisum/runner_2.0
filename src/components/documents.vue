@@ -5,6 +5,7 @@
       wrap
     >
       <add-file-group></add-file-group>
+      <files-groups :fileGroups = "fileGroups"></files-groups>
     </v-layout>
   </v-container>
 </template>
@@ -16,5 +17,10 @@ import AddFileGroup from "./addFileGroup";
 
 export default {
   components: {ChooseFileButton, FilesGroups, AddFileGroup},
+  computed: {
+    fileGroups() {
+      return this.$store.state.fileGroups.groups
+    }
+  }
 };
 </script>

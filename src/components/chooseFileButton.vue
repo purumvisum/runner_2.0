@@ -3,6 +3,7 @@
 </template>
 
 <script>
+    import uuid from "../utils/uuid";
     const electron = require('electron');
     const path = require('path');
     const fs = require('fs');
@@ -21,8 +22,10 @@
 
               const mapedFiles = files.map((file) => {
                   return {
+                      id: uuid(),
                       name: file.split('/').pop(),
-                      filePaths: file
+                      filePaths: file,
+                      checked: true
                   }
               });
 
