@@ -67,8 +67,6 @@
                 this.$store.dispatch(types.ADD_FILE_GROUP, groupToSave);
                 this.groupName = '';
                 this.files=[];
-                // console.log("fgsdfgsfgsdfg",this.$store.state.fileGroups.groups[...])
-                // cons
             }
         }
     }

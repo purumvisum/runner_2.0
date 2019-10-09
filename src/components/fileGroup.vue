@@ -4,7 +4,6 @@
         <v-expansion-panel-content>
             <v-container>
             <v-row justify="space-around">
-<!--                <div :style="{ cursor: 'pointer' }">dfgsdfgsdg</div>-->
                 <v-col
                         v-for="(card,i) in item.files"
                         cols="12"
@@ -12,17 +11,7 @@
                         sm="6"
                 >
                     <file-card :groupTitle = 'title' :card = 'card' ></file-card>
-<!--                    <v-sheet class="pa-12" :color="cardColor">-->
-<!--&lt;!&ndash;                        <v-checkbox></v-checkbox>&ndash;&gt;-->
-<!--                        {{card}}-->
-<!--                        <v-card >-->
-<!--                            <v-card-title>{{card.name}}</v-card-title>-->
-<!--                            <v-card-text>{{card.filePaths}}</v-card-text>-->
-<!--                        </v-card>-->
-<!--                    </v-sheet>-->
                 </v-col>
-<!--                <choose-file-button-->
-<!--                ></choose-file-button>-->
             </v-row>
                 <v-btn @click="open()">Open checked files</v-btn>
             </v-container>
@@ -43,9 +32,9 @@
                 this.$store.state.fileGroups.groups[this.title].files.forEach((file) => {
 
                     shell.openItem(file.filePaths);
-                    console.log('file.filePaths', file.filePaths)
+                    // console.log('file.filePaths', file.filePaths)
                     // show in folder
-                    shell.showItemInFolder('/Users/divanovich/Documents/files/sample.pdf');
+                    // shell.showItemInFolder('/Users/divanovich/Documents/files/sample.pdf');
                 })
             },
         }
