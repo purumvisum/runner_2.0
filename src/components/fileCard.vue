@@ -17,19 +17,18 @@
 
 <script>
     import * as types from '../store/types';
-
     export default {
         computed:{
             cardColor () {
                return  this.card.checked ?  'green lighten-3' :  'grey lighten-3';
             }
         },
-        props: ['card', 'groupTitle'],
+        props: ['card', 'groupId'],
         methods: {
             toggleFilesShow() {
                 this.$store.dispatch(types.TOGGLE_FILE_CHECKED,
                     {
-                        title: this.groupTitle,
+                        groupId: this.groupId,
                         id: this.card.id
                     });
             }

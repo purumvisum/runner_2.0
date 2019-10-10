@@ -57,7 +57,7 @@ const mutations = {
     },
     [types.MUTATE_FILE_CHECKED]: (state, payload) => {
         // console.log("MUTATE_FILE_GROUPS",state, payload, state.fileGroups);
-        const file = state.groups[payload.title].files.find((file) => file.id === payload.id)
+        const file = state.groups[payload.groupId].files.find((file) => file.id === payload.id)
         file.checked = !file.checked;
         // state.groups = {
         //     ...state.groups,

@@ -3,14 +3,15 @@
 </template>
 
 <script>
-    import uuid from "../utils/uuid";
     const electron = require('electron');
     const path = require('path');
     const fs = require('fs');
 
+    import uuid from "../utils/uuid";
+
   export default {
 
-      props: ['groupName', 'addFiles'],
+      props: ['addFiles'],
       methods: {
           handleClick() {
               this.load();
@@ -28,7 +29,6 @@
                       checked: true
                   }
               });
-
               this.addFiles(mapedFiles)
           }
       }

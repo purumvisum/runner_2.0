@@ -1,10 +1,10 @@
 <template>
     <v-expansion-panels>
         <file-group
-                v-for="(group, groupTitle) in fileGroups"
+                v-for="(group, groupId) in fileGroups"
                 :key="i"
                 :item="group"
-                :title="groupTitle"
+                :groupId="groupId"
         ></file-group>
     </v-expansion-panels>
 </template>

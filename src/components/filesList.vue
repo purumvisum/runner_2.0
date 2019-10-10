@@ -24,7 +24,7 @@
 
 <script>
     export default {
-        props: ['groupName', 'files'],
+        props: ['files'],
         methods: {
             removeFile (index)  {
                 this.files.splice(index, 1);
