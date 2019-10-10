@@ -5,8 +5,11 @@
                 <v-toolbar-title>{{groupTitle}}</v-toolbar-title>
 
                 <div class="flex-grow-1"></div>
-                <v-btn @click="toggleDialog(true)" icon>
+                <v-btn @click.stop="toggleDialog(true)" icon>
                     <v-icon>mdi-file-document-edit-outline</v-icon>
+                </v-btn>
+                <v-btn @click.stop="removeCurrentGroup"  icon>
+                    <v-icon>mdi-trash-can</v-icon>
                 </v-btn>
                 <edit-group-dialog
                         :dialog="dialog"
@@ -43,7 +46,7 @@
 
     export default {
         components: {ChooseFileButton, FileCard, EditGroupDialog},
-        props: ['groupId', 'key', 'item'],
+        props: ['groupId', 'key', 'item', 'removeGroup'],
         data: () => ({
             dialog: false
         }),
@@ -62,6 +65,9 @@
                         shell.openItem(file.filePaths);
                     }
                  })
+            },
+            removeCurrentGroup() {
+               this.removeGroup(this.groupId)
             },
             toggleDialog(open) {
                 this.dialog=open;

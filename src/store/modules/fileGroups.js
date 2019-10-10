@@ -55,6 +55,11 @@ const mutations = {
         };
         console.log('state.fileGroups', state.fileGroups)
     },
+    [types.MUTATE_DELETE_FILE_GROUPS]: (state, payload) => {
+        delete state.groups[payload.id];
+        // to update state
+        state.groups = {...state.groups};
+    },
     [types.MUTATE_FILE_CHECKED]: (state, payload) => {
         // console.log("MUTATE_FILE_GROUPS",state, payload, state.fileGroups);
         const file = state.groups[payload.groupId].files.find((file) => file.id === payload.id)
@@ -74,6 +79,10 @@ const actions = {
     [types.ADD_FILE_GROUP]: ({ commit }, payload) => {
         console.log('payload', payload);
         commit(types.MUTATE_FILE_GROUPS, payload);
+    },
+    [types.DELETE_FILE_GROUP]: ({ commit }, payload) => {
+        // console.log('payload', payload);
+        commit(types.MUTATE_DELETE_FILE_GROUPS, payload);
     },
     [types.TOGGLE_FILE_CHECKED]: ({ commit }, payload) => {
         console.log('payload id', payload);

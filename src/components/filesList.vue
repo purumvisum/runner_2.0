@@ -6,6 +6,7 @@
                 <tr>
                     <th class="text-left">Name</th>
                     <th class="text-left">Path</th>
+                    <th class="text-left"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -13,7 +14,9 @@
                     <td>{{item.name}}</td>
                     <td>{{ item.filePaths }}</td>
                     <td>
-                        <v-icon @click="removeFile(index)" medium right color="gray">mdi-trash-can</v-icon>
+                        <v-btn @click="removeFile(index)"  icon>
+                            <v-icon>mdi-trash-can</v-icon>
+                        </v-btn>
                     </td>
                 </tr>
                 </tbody>
