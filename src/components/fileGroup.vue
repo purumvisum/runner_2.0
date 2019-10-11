@@ -5,12 +5,22 @@
                 <v-toolbar-title>{{groupTitle}}</v-toolbar-title>
 
                 <div class="flex-grow-1"></div>
-                <v-btn @click.stop="toggleDialog(true)" icon>
-                    <v-icon>mdi-file-document-edit-outline</v-icon>
-                </v-btn>
-                <v-btn @click.stop="removeCurrentGroup"  icon>
-                    <v-icon>mdi-trash-can</v-icon>
-                </v-btn>
+                <v-tooltip top>
+                    <template v-slot:activator="{ on }">
+                        <v-btn v-on="on" @click.stop="toggleDialog(true)" icon>
+                            <v-icon>mdi-file-document-edit-outline</v-icon>
+                        </v-btn>
+                    </template>
+                    <span>Edit Group</span>
+                </v-tooltip>
+                <v-tooltip top>
+                    <template v-slot:activator="{ on }">
+                    <v-btn v-on="on" @click.stop="removeCurrentGroup"  icon>
+                        <v-icon>mdi-trash-can</v-icon>
+                    </v-btn>
+                    </template>
+                    <span>Remove Group</span>
+                </v-tooltip>
                 <edit-group-dialog
                         :dialog="dialog"
                         :groupId = 'groupId'
