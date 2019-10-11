@@ -35,6 +35,8 @@
     import FilesList from "./filesList";
     import ChooseFileButton from "./chooseFileButton";
     import uuid from "../utils/uuid";
+    import appStorage from "../utils/StoreState";
+
     export default {
         props: ['dialog', 'closeDialog', 'groupFiles', 'groupTitle', 'groupId'],
         components: {ChooseFileButton, FilesList},
@@ -89,6 +91,7 @@
                 this.$store.dispatch(types.ADD_FILE_GROUP, groupToSave);
                 this.groupName = '';
                 this.files=[];
+                appStorage.set('fileGroups', this.$store.state.fileGroups);
             }
         }
     }
