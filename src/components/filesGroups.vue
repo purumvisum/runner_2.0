@@ -2,7 +2,6 @@
     <v-expansion-panels>
         <file-group
                 v-for="(group, groupId) in fileGroups"
-                :key="i"
                 :item="group"
                 :groupId="groupId"
                 :removeGroup="removeGroup"

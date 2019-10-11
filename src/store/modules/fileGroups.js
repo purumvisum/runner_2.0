@@ -67,7 +67,7 @@ const mutations = {
         // state.groups = {
         //     ...state.groups,
         //     ...payload
-        // };
+        // };Щ
         // console.log('state.fileGroups', state.fileGroups)
     },
     // [types.MUTATE_DECREMENT_COUNTER]: (state, payload) => {

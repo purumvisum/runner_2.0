@@ -42,11 +42,11 @@
     import EditGroupDialog from "./editGroupDialig";
     import ChooseFileButton from "./chooseFileButton";
     import FileCard from "./fileCard";
-    const { shell } = require('electron')
+    const { shell } = require('electron');
 
     export default {
         components: {ChooseFileButton, FileCard, EditGroupDialog},
-        props: ['groupId', 'key', 'item', 'removeGroup'],
+        props: ['groupId','item', 'removeGroup'],
         data: () => ({
             dialog: false
         }),
