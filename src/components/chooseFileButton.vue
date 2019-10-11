@@ -1,5 +1,13 @@
 <template>
-    <v-btn @click="handleClick()">Choose file</v-btn>
+    <v-btn
+            width='100%'
+            x-large
+            @click="handleClick()">
+        <v-icon :style="{ marginRight: '10px', color:'green'}">
+            mdi-file-plus-outline
+        </v-icon>
+        Choose files
+    </v-btn>
 </template>
 
 <script>

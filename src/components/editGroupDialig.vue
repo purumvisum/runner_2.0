@@ -1,14 +1,24 @@
 <template>
     <v-dialog v-model="dialog" persistent max-width="600px">
         <v-card>
+
             <v-card-title>
                 <span class="headline">{{header}}</span>
+                <div class="flex-grow-1"></div>
+                <v-tooltip left>
+                    <template v-slot:activator="{ on }">
+                        <v-btn  v-on="on" icon darken-1 @click="closeDialog(false)">
+                            <v-icon >mdi-close</v-icon>
+                        </v-btn>
+                    </template>
+                    <span>Close</span>
+                </v-tooltip>
             </v-card-title>
             <v-card-text>
                 <v-container>
                     <v-row>
                         <v-col cols="12" sm="6" md="4">
-                            <v-text-field label="Group Name*" required v-model="groupName"></v-text-field>
+                            <v-text-field label="Group Name*" color='green' required v-model="groupName"></v-text-field>
                         </v-col>
                     </v-row>
                 </v-container>
@@ -22,8 +32,20 @@
             </v-card-text>
             <v-card-actions>
                 <div class="flex-grow-1"></div>
-                <v-btn color="blue darken-1" text @click="closeDialog(false)">Close</v-btn>
-                <v-btn color="blue darken-1" text @click="saveFilesToTheStore">Save</v-btn>
+                <v-tooltip left>
+                    <template v-slot:activator="{ on }">
+                    <v-btn
+                            :style="{ margin: '10px'}"
+                            @click="saveFilesToTheStore"
+                            class="mx-2"
+                            fab dark
+                            v-on="on"
+                            color="green">
+                        <v-icon dark>mdi-content-save-edit-outline</v-icon>
+                    </v-btn>
+                    </template>
+                    <span>Save all changes</span>
+                </v-tooltip>
             </v-card-actions>
         </v-card>
     </v-dialog>

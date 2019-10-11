@@ -2,7 +2,8 @@
     <v-expansion-panel>
         <v-expansion-panel-header>
             <v-toolbar flat>
-                <v-toolbar-title>{{groupTitle}}</v-toolbar-title>
+                <v-toolbar-title>{{groupTitle}}
+                </v-toolbar-title>
 
                 <div class="flex-grow-1"></div>
                 <v-tooltip top>
@@ -13,6 +14,7 @@
                     </template>
                     <span>Edit Group</span>
                 </v-tooltip>
+
                 <v-tooltip top>
                     <template v-slot:activator="{ on }">
                     <v-btn v-on="on" @click.stop="removeCurrentGroup"  icon>
@@ -21,13 +23,18 @@
                     </template>
                     <span>Remove Group</span>
                 </v-tooltip>
-                <edit-group-dialog
-                        :dialog="dialog"
-                        :groupId = 'groupId'
-                        :closeDialog="toggleDialog"
-                        :groupTitle = 'groupTitle'
-                        :groupFiles = 'groupFiles'
-                ></edit-group-dialog>
+
+                <v-tooltip top>
+                    <template v-slot:activator="{ on }">
+                        <v-btn v-on="on" @click='openAllFiles' :style="{ marginRight:'0'}" icon>
+                            <v-badge color='green'>
+                                    <v-icon>mdi-file-search-outline</v-icon>
+                                    <template v-slot:badge>{{groupFiles.length}}</template>
+                            </v-badge>
+                        </v-btn>
+                    </template>
+                    <span>Open All Files</span>
+                </v-tooltip>
             </v-toolbar>
         </v-expansion-panel-header>
         <v-expansion-panel-content>
@@ -42,9 +49,33 @@
                         <file-card :groupId = 'groupId' :card = 'card' ></file-card>
                     </v-col>
                 </v-row>
-                <v-btn @click="open()">Open checked files</v-btn>
+                <v-btn
+                        width='100%'
+                        x-large
+                        v-if='checkedFiles.length'
+                        @click="open()">
+                    <v-icon :style="{ marginRight: '10px', color:'green'}">
+                        mdi-file-search-outline
+                    </v-icon>
+                    <span>Open <span :style="{color:'green'}">{{checkedFiles.length}}</span> files</span>
+                </v-btn>
+                <v-alert
+                        v-if='!checkedFiles.length'
+                        text
+                        outlined
+                        color='green'
+                >
+                    Please, pick some files to open
+                </v-alert>
             </v-container>
         </v-expansion-panel-content>
+        <edit-group-dialog
+                :dialog="dialog"
+                :groupId = 'groupId'
+                :closeDialog="toggleDialog"
+                :groupTitle = 'groupTitle'
+                :groupFiles = 'groupFiles'
+        ></edit-group-dialog>
     </v-expansion-panel>
 </template>
 
@@ -66,15 +97,23 @@
             },
             groupFiles() {
               return this.$store.state.fileGroups.groups[this.groupId].files
+            },
+            checkedFiles() {
+                return this.$store.state.fileGroups.groups[this.groupId].files.filter((file) => {
+                  return file.checked
+                })
             }
         },
         methods: {
             open() {
-                this.$store.state.fileGroups.groups[this.groupId].files.forEach((file) => {
-                    if (file.checked) {
-                        shell.openItem(file.filePaths);
-                    }
+                this.checkedFiles.forEach((file) => {
+                    shell.openItem(file.filePaths);
                  })
+            },
+            openAllFiles() {
+                this.groupFiles.forEach((file) => {
+                    shell.openItem(file.filePaths);
+                })
             },
             removeCurrentGroup() {
                this.removeGroup(this.groupId)
