@@ -1,7 +1,7 @@
 <template>
     <v-expansion-panels>
         <file-group
-                v-for="(group, groupId) in fileGroups"
+                v-for="(group, groupId) in fileGroupsFiltered"
                 :item="group"
                 :groupId="groupId"
                 :removeGroup="removeGroup"
@@ -13,15 +13,38 @@
     import FileGroup from "./fileGroup";
     import * as types from '../store/types';
     export default {
+        data: () => ({
+            fileGroupsFiltered: {}
+        }),
         components: {FileGroup},
-        computed: {
-            fileGroups() {
-                return this.$store.state.fileGroups.groups
+        props: ['filterTitle'],
+        watch: {
+            filterTitle: {
+                immediate: true,
+                handler () {
+                    this.getFilteredGroups();
+                }
             }
         },
         methods: {
             removeGroup(groupId) {
                 this.$store.dispatch(types.DELETE_FILE_GROUP, {id: groupId})
+            },
+            getFilteredGroups() {
+                if (this.filterTitle.length) {
+                    this.fileGroupsFiltered = {};
+                    Object.keys(this.$store.state.fileGroups.groups).forEach((key, index) => {
+                    // for (const key in this.$store.state.fileGroups.groups) {
+                        if (this.$store.state.fileGroups.groups[key].name.toLowerCase().includes(this.filterTitle.toLowerCase())) {
+                            this.fileGroupsFiltered = {
+                                ...this.fileGroupsFiltered,
+                                ...{[key]: this.$store.state.fileGroups.groups[key]}
+                            }
+                        }
+                    })
+                } else {
+                    this.fileGroupsFiltered ={...this.$store.state.fileGroups.groups}
+                }
             }
         }
     }

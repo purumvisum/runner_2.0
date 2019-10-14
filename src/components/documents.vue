@@ -10,15 +10,20 @@
                         top: '40px'
                     }">
                         <v-text-field
-                        color='green'
-                        hide-details
-                        prepend-icon="mdi-magnify"
-                        single-line></v-text-field>
+                                v-model='filterTitle'
+                                color='green'
+                                hide-details
+                                prepend-icon="mdi-magnify"
+                                single-line>
+
+                        </v-text-field>
                     </div>
                 </template>
                 <span>Search by Title</span>
             </v-tooltip>
-            <files-groups></files-groups>
+            <files-groups
+                :filterTitle = 'filterTitle'
+            ></files-groups>
         </v-layout>
     </v-container>
 </template>
@@ -29,6 +34,9 @@ import FilesGroups from "./filesGroups";
 import AddFileGroup from "./addFileGroup";
 
 export default {
-  components: {ChooseFileButton, FilesGroups, AddFileGroup},
+    components: {ChooseFileButton, FilesGroups, AddFileGroup},
+    data: () => ({
+        filterTitle: ''
+    })
 };
 </script>
