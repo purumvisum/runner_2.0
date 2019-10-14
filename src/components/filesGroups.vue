@@ -19,11 +19,22 @@
         components: {FileGroup},
         props: ['filterTitle'],
         watch: {
-            filterTitle: {
+            fileGroups: {
                 immediate: true,
-                handler () {
+                handler (){
                     this.getFilteredGroups();
                 }
+            },
+            filterTitle: {
+                immediate: true,
+                handler (){
+                    this.getFilteredGroups();
+                }
+            }
+        },
+        computed: {
+            fileGroups () {
+                return this.$store.state.fileGroups.groups
             }
         },
         methods: {
@@ -34,7 +45,6 @@
                 if (this.filterTitle.length) {
                     this.fileGroupsFiltered = {};
                     Object.keys(this.$store.state.fileGroups.groups).forEach((key, index) => {
-                    // for (const key in this.$store.state.fileGroups.groups) {
                         if (this.$store.state.fileGroups.groups[key].name.toLowerCase().includes(this.filterTitle.toLowerCase())) {
                             this.fileGroupsFiltered = {
                                 ...this.fileGroupsFiltered,
