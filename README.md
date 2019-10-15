@@ -1,29 +1,20 @@
-# runner_2.0
+# Opener
+> Vue, 
+> Vuex,
+> Electron
 
-## Project setup
-```
-npm install
-```
+#### Can create a file's groups and open files with default system application
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+To run application as a mac user:
+1. download Opener-0.1.0.dmg
+2. install it
 
-### Compiles and minifies for production
+## Run project
 ```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
+npm run electron:serve 
 ```
 
-### Lints and fixes files
+### Build app
 ```
-npm run lint
+npm run electron:build
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
