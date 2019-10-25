@@ -3,6 +3,8 @@
 > Vuex,
 > Electron
 
+![Demo](https://github.com/purumvisum/runner_2.0/blob/master/Opener.gif)
+
 #### Can create a file's groups and open files with default system application
 
 To run application as a mac user:
