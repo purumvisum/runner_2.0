@@ -1,5 +1,5 @@
 <template>
-    <v-dialog v-model="dialog" persistent max-width="600px">
+    <v-dialog v-model="dialog" persistent max-width="80%">
         <v-card>
 
             <v-card-title>
@@ -75,10 +75,10 @@
             groupFiles: {
                 immediate: true,
                 handler () {
-                    if (this.groupFiles.length) {
+                    if (this.groupFiles && this.groupFiles.length) {
                         this.files = this.groupFiles;
                     }
-                    if (this.groupTitle.length) {
+                    if (this.groupTitle && this.groupTitle.length) {
                         this.groupName = this.groupTitle;
                     }
                 }
@@ -112,7 +112,7 @@
                 this.closeDialog(false);
                 this.$store.dispatch(types.ADD_FILE_GROUP, groupToSave);
                 this.groupName = '';
-                this.files=[];
+                // this.files=[];
                 appStorage.set('fileGroups', this.$store.state.fileGroups);
             }
         }
