@@ -31,6 +31,7 @@
             </div>
                 <v-card  :elevation="hover ? 12 : 2">
                     <v-card-title>{{card.name}}</v-card-title>
+                    <pdf-image :path='card.filePaths'></pdf-image>
                     <v-card-text>{{card.filePaths}}</v-card-text>
                 </v-card>
             </v-sheet>
@@ -40,9 +41,10 @@
 
 <script>
     import * as types from '../store/types';
+    import PdfImage from "./pdfImage";
     const { shell } = require('electron');
     export default {
-
+        components: {PdfImage},
         computed:{
             cardColor () {
                return  this.card.checked ?  'green lighten-3' :  'grey lighten-3';
@@ -59,7 +61,7 @@
             },
             showItemInFolder(path) {
                 shell.showItemInFolder(path)
-            }
+            },
         },
     }
 </script>
