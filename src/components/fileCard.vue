@@ -41,6 +41,7 @@
 <script>
     import * as types from '../store/types';
     const { shell } = require('electron');
+    import appStorage from "../utils/StoreState";
     export default {
 
         computed:{
@@ -56,6 +57,7 @@
                         groupId: this.groupId,
                         id: this.card.id
                     });
+                appStorage.set('fileGroups', this.$store.state.fileGroups);
             },
             showItemInFolder(path) {
                 shell.showItemInFolder(path)
