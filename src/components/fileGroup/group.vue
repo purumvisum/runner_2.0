@@ -80,9 +80,9 @@
 </template>
 
 <script>
-    import EditGroupDialog from "./editGroupDialig";
-    import ChooseFileButton from "./chooseFileButton";
-    import FileCard from "./fileCard";
+    import EditGroupDialog from "../editGroupDialog/editGroupDialog";
+    import ChooseFileButton from "../editGroupDialog/chooseFileButton";
+    import FileCard from "./card";
     const { shell } = require('electron');
 
     export default {

@@ -15,7 +15,7 @@
     const path = require('path');
     const fs = require('fs');
 
-    import uuid from "../utils/uuid";
+    import uuid from "../../utils/uuid";
 
   export default {
 

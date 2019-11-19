@@ -27,7 +27,7 @@
 </template>
 
 <script>
-    import File from "./fileInList";
+    import File from "./file";
     export default {
         props: ['files'],
         components: {File},

@@ -10,7 +10,7 @@
 </template>
 
 <script>
-    import FileGroup from "./fileGroup";
+    import FileGroup from "./fileGroup/group";
     import * as types from '../store/types';
     export default {
         data: () => ({

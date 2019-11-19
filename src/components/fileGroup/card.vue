@@ -39,9 +39,9 @@
 </template>
 
 <script>
-    import * as types from '../store/types';
+    import * as types from '../../store/types';
     const { shell } = require('electron');
-    import appStorage from "../utils/StoreState";
+    import appStorage from "../../utils/StoreState";
     export default {
 
         computed:{

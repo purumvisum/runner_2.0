@@ -53,11 +53,11 @@
 
 
 <script>
-    import * as types from '../store/types';
-    import FilesList from "./filesList";
+    import * as types from '../../store/types';
+    import FilesList from "./choosenFilesTable/filesTable";
     import ChooseFileButton from "./chooseFileButton";
-    import uuid from "../utils/uuid";
-    import appStorage from "../utils/StoreState";
+    import uuid from "../../utils/uuid";
+    import appStorage from "../../utils/StoreState";
 
     export default {
         props: ['dialog', 'closeDialog', 'groupFiles', 'groupTitle', 'groupId'],

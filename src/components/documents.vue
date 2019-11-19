@@ -18,12 +18,11 @@
 </template>
 
 <script>
-import ChooseFileButton from "./chooseFileButton";
 import FilesGroups from "./filesGroups";
 import AddFileGroup from "./addFileGroup";
 
 export default {
-    components: {ChooseFileButton, FilesGroups, AddFileGroup},
+    components: {FilesGroups, AddFileGroup},
     data: () => ({
         filterTitle: ''
     })

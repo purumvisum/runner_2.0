@@ -29,7 +29,7 @@
 </template>
 
 <script>
-    import AddGroupDialog from "./editGroupDialig";
+    import AddGroupDialog from "./editGroupDialog/editGroupDialog";
     export default {
         components: {AddGroupDialog},
         data: () => ({
